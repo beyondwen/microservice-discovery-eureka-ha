@@ -1,0 +1,25 @@
+spring:
+  application:
+    name: microservice-discovery-eureka-ha
+---
+spring:
+  profiles: peer1
+server:
+  port: 9051
+eureka:
+  instance:
+    hostname: peer1
+  client:
+    service-url:
+      defaultZone: http://peer2:9052/eureka/
+---
+spring:
+  profiles: peer2
+server:
+  port: 9052
+eureka:
+  instance:
+    hostname: peer2
+  client:
+    service-url:
+      defaultZone: http://peer1:9051/eureka/
